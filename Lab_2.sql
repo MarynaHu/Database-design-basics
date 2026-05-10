@@ -38,7 +38,7 @@ INSERT INTO company_vehicles (make, model, license_plate, year, mileage, status,
 VALUES ('Ford', 'Transit', 'KA4213EB', 2019, 125000, 'Active', 'Основний робочий фургон');
 
 DO $$
-DECLARE -- Оголощення змінних
+DECLARE -- Оголошення змінних
     i INT := 1;
     n INT := 10; -- кількість нових записів
 BEGIN
@@ -47,9 +47,9 @@ BEGIN
         VALUES (
             'Brand_' || i, 
             'Model_X', 
-            'KA' || LPAD(i::text, 4, '0') || 'EE', -- Генеруємо номери
+            'KA' || LPAD(i::text, 4, '0') || 'EE', -- Генерація номерів
             2010 + (i % 16),                        -- Роки випуску
-            i * 15000                              -- Генеруємо пробіг
+            i * 15000                              -- Генерація пробігу
         );
         i := i + 1;
     END LOOP;
