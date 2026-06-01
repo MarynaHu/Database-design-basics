@@ -4,7 +4,7 @@ from repository import InMemoryVehicleRepository, PostgresVehicleRepository, Jso
 
 def test_repository(repo: VehicleRepository):
     print(f"\n{'='*40}")
-    print(f"🚀 ТЕСТУВАННЯ: {repo.__class__.__name__}")
+    print(f" ТЕСТУВАННЯ: {repo.__class__.__name__}")
     print(f"{'='*40}")
 
     try:
@@ -21,7 +21,7 @@ def test_repository(repo: VehicleRepository):
         if fetched_vehicle:
             print(f"  ✓ Знайдено: {fetched_vehicle.make} {fetched_vehicle.model} ({fetched_vehicle.license_plate})")
         else:
-            print("  ❌ Помилка: Авто не знайдено!")
+            print("Помилка: Авто не знайдено!")
 
         # 3. READ ALL (Отримання списку)
         print("[3/5] Тест GET_ALL...")
@@ -36,7 +36,7 @@ def test_repository(repo: VehicleRepository):
         if updated_vehicle.license_plate == "XX9999ZZ":
             print(f"  ✓ Оновлено успішно. Новий номер: {updated_vehicle.license_plate}")
         else:
-            print("  ❌ Помилка: Дані не оновилися!")
+            print("Помилка: Дані не оновилися!")
 
         # 5. DELETE (Видалення)
         print("[5/5] Тест DELETE...")
@@ -45,10 +45,10 @@ def test_repository(repo: VehicleRepository):
         if is_deleted and check_deleted is None:
             print("  ✓ Видалено успішно. Запис більше не існує.")
         else:
-            print("  ❌ Помилка при видаленні!")
+            print("Помилка при видаленні!")
 
     except Exception as e:
-        print(f"\n❌ КРИТИЧНА ПОМИЛКА під час тестування:")
+        print(f"\nКРИТИЧНА ПОМИЛКА під час тестування:")
         print(e)
     
     print(f"{'='*40}\n")
@@ -88,8 +88,9 @@ def get_repository() -> VehicleRepository:
 def main():
 
     repo = get_repository()
-    test_repository(repo)
-    '''
+    # Для використання test_repository(repo) приберіть # і поставте ''' перед while і після print("Невідома команда. Спробуйте ще раз.")
+    #test_repository(repo)
+    
     while True:
         print_menu()
         choice = input("Оберіть дію: ")
@@ -101,7 +102,7 @@ def main():
             year = int(input("Рік випуску: "))
             new_vehicle = Vehicle(id=None, make=make, model=model, license_plate=plate, year=year)
             created = repo.create(new_vehicle)
-            print(f"✅ Додано: {created}")
+            print(f" Додано: {created}")
 
         elif choice == '2':
             limit = int(input("Скільки записів показати на сторінці? (наприклад, 10): "))
@@ -125,22 +126,22 @@ def main():
                 
                 updated_vehicle = Vehicle(id=v_id, make=make, model=model, license_plate=plate, year=year)
                 repo.update(updated_vehicle)
-                print("✅ Запис оновлено!")
+                print(" Запис оновлено!")
             else:
-                print("❌ Авто з таким ID не знайдено.")
+                print(" Авто з таким ID не знайдено.")
 
         elif choice == '4':
             v_id = int(input("ID авто для видалення: "))
             if repo.delete(v_id):
-                print("✅ Запис видалено!")
+                print(" Запис видалено!")
             else:
-                print("❌ Авто не знайдено.")
+                print(" Авто не знайдено.")
 
         elif choice == '0':
             print("Вихід...")
             break
         else:
-            print("Невідома команда. Спробуйте ще раз.")'''
+            print("Невідома команда. Спробуйте ще раз.")
 
 if __name__ == "__main__":
     main()
