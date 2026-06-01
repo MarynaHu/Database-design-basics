@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+// Повідомлення для Protobuf (по суті, клас)
+message VehicleProto {
+  int32 id = 1;
+  string make = 2;
+  string model = 3;
+  string license_plate = 4;
+}
